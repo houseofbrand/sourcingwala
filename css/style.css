@@ -248,6 +248,61 @@ footer p {
   margin: 5px 0;
 }
 
+/* Brands Grid Section */
+.brands-grid {
+    text-align: center;
+    padding: 100px 20px;
+  }
+  
+  .brands-grid h1 {
+    font-size: 36px;
+    margin-bottom: 40px;
+  }
+  
+  /* Center the grid container */
+  .brands-grid .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto; /* Centers the grid container */
+    justify-items: center; /* Center items horizontally within each grid cell */
+  }
+  
+  /* Center each brand item and its image */
+  .brand-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeInUp 0.8s forwards;
+    animation-delay: calc(var(--i) * 0.1s);
+  }
+  
+  .brand-item img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Fade In Up Animation */
+  @keyframes fadeInUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .categories {
