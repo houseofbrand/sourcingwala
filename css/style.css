@@ -14,7 +14,7 @@ body {
   line-height: 1.6;
 }
 
-/* Header */
+/* Header & Navigation */
 header {
   background: #000;
   padding: 20px;
@@ -22,6 +22,9 @@ header {
   width: 100%;
   top: 0;
   z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 header .logo {
@@ -30,9 +33,31 @@ header .logo {
   color: #fff;
 }
 
+header nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+}
+
+header nav ul li {
+  margin-left: 20px;
+}
+
+header nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+header nav ul li a:hover,
+header nav ul li a.active {
+  color: #f0f2f5;
+}
+
 /* Banner */
 .banner {
-  margin-top: 80px; /* to offset fixed header */
+  margin-top: 80px; /* offset fixed header */
   background: url('../assets/images/banner.jpg') no-repeat center center/cover;
   height: 500px;
   display: flex;
@@ -131,6 +156,13 @@ header .logo {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
 }
 
+/* Ordering Guidelines Styling */
+.ordering-guidelines {
+  font-size: 16px;
+  margin: 15px 0;
+}
+
+/* Subcategory Button */
 .subcategories-content .sub-btn {
   margin: 10px;
   padding: 12px 24px;
@@ -163,6 +195,46 @@ header .logo {
   color: #ddd;
 }
 
+/* Main Content for About & Contact Pages */
+main.content {
+  padding: 100px 20px 40px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about, .contact {
+  background: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.about h1, .contact h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.about p, .contact p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.contact-info {
+  list-style: none;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.contact-info li {
+  margin-bottom: 10px;
+}
+
+.contact-info a {
+  color: #000;
+  text-decoration: underline;
+}
+
 /* Footer */
 footer {
   background: #000;
@@ -186,4 +258,23 @@ footer p {
     font-size: 36px;
     padding: 15px 30px;
   }
+}
+
+/* Custom Themed Scrollbar for Webkit Browsers */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f0f2f5;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #000;
+  border-radius: 10px;
+  border: 2px solid #f0f2f5;
+}
+
+/* Firefox Scrollbar */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #000 #f0f2f5;
 }
