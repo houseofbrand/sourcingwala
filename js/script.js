@@ -15,17 +15,22 @@ document.addEventListener("DOMContentLoaded", () => {
         const cat = this.getAttribute('data-category');
         let subcategories = [];
         
-        // Define subcategories based on actual PDF structure
+        // Define subcategories based on actual PDF structure with correct case
         if (cat === 'sunglasses') {
           subcategories = ['Kids Sunglass', 'Unisex Sunglasses'];
+          cat = 'Sunglasses'; // Correct case for folder name
         } else if (cat === 'watches') {
           subcategories = ['Kids Watches', 'Men Watches', 'Women Watches'];
+          cat = 'Watches'; // Correct case for folder name
         } else if (cat === 'lingerie') {
           subcategories = ['Baby Doll', 'Baby Doll Dress', 'Babydoll with Robe', 'Co-Ord Set Babydoll', 'Honey Moon Dress', 'Lingerie & Bikni Set', 'Premium Baby Doll'];
+          cat = 'Lingerie'; // Correct case for folder name
         } else if (cat === 'accessorygiftset') {
           subcategories = ['Men Belt Wallet Set'];
+          cat = 'AccessoryGiftSet'; // Correct case for folder name
         } else if (cat === 'watchgiftset') {
           subcategories = ['Men', 'Women'];
+          cat = 'WatchGiftSet'; // Correct case for folder name
         }
         
         // For categories with only one subcategory, open PDF directly
