@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // For categories with only one subcategory, open PDF directly
         if (subcategories.length === 1) {
-          const pdfUrl = `assets/Pdfs/${cat}/${subcategories[0].replace(/\s/g, ' ')}.pdf`;
+          const pdfUrl = `https://cdn.jsdelivr.net/gh/houseofbrands/hobwholesale@main/assets/Pdfs/${cat}/${encodeURIComponent(subcategories[0])}.pdf`;
           window.open(pdfUrl, '_blank');
           return;
         }
@@ -48,8 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
           btn.textContent = sub;
           btn.classList.add('sub-btn');
           btn.addEventListener('click', function () {
-            // Construct PDF URL based on actual folder structure
-            const pdfUrl = `assets/Pdfs/${cat}/${sub}.pdf`;
+            // Construct PDF URL using CDN and proper encoding
+            const pdfUrl = `https://cdn.jsdelivr.net/gh/houseofbrands/hobwholesale@main/assets/Pdfs/${cat}/${encodeURIComponent(sub)}.pdf`;
             window.open(pdfUrl, '_blank');
           });
           subCatContainer.appendChild(btn);
