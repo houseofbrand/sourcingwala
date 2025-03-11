@@ -3,7 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const orderingGuidelines = {
       sunglasses: "For sunglasses, please ensure you specify the lens type and frame color. Orders must be placed by 10 AM local time.",
       watches: "For watches, please note that warranty details are included in the PDF. Verify model specifications before ordering.",
-      lingerie: "For lingerie, please check our size guide and color availability. Orders are subject to stock confirmation."
+      lingerie: "For lingerie, please check our size guide and color availability. Orders are subject to stock confirmation.",
+      accessorygiftset: "For accessory gift sets, please note minimum order quantities apply.",
+      watchgiftset: "For watch gift sets, please verify packaging requirements before ordering."
     };
   
     const categoryElements = document.querySelectorAll('.category');
@@ -13,18 +15,27 @@ document.addEventListener("DOMContentLoaded", () => {
         const cat = this.getAttribute('data-category');
         let subcategories = [];
         
-        // Define subcategories for categories that have them
-        if (cat === 'sunglasses' || cat === 'watches') {
-          subcategories = ['Men', 'Women', 'Kids'];
+        // Define subcategories based on actual PDF structure
+        if (cat === 'sunglasses') {
+          subcategories = ['Kids Sunglass', 'Unisex Sunglasses'];
+        } else if (cat === 'watches') {
+          subcategories = ['Kids Watches', 'Men Watches', 'Women Watches'];
         } else if (cat === 'lingerie') {
-          subcategories = ['Babydoll', 'Lingerie Set', 'Pack of 3 Panties', 'Co-Ord Set'];
+          subcategories = ['Baby Doll', 'Baby Doll Dress', 'Babydoll with Robe', 'Co-Ord Set Babydoll', 'Honey Moon Dress', 'Lingerie & Bikni Set', 'Premium Baby Doll'];
         } else if (cat === 'accessorygiftset') {
-          // For categories without subcategories, open the PDF directly.
-          window.open('assets/pdfs/' + cat + '.pdf', '_blank');
+          subcategories = ['Men Belt Wallet Set'];
+        } else if (cat === 'watchgiftset') {
+          subcategories = ['Men', 'Women'];
+        }
+        
+        // For categories with only one subcategory, open PDF directly
+        if (subcategories.length === 1) {
+          const pdfUrl = `assets/Pdfs/${cat}/${subcategories[0].replace(/\s/g, ' ')}.pdf`;
+          window.open(pdfUrl, '_blank');
           return;
         }
         
-        // Build the subcategories overlay with ordering guidelines and heading.
+        // Build the subcategories overlay with ordering guidelines and heading
         const subCatContainer = document.querySelector('#subcategories .subcategories-content');
         const guidelinesText = orderingGuidelines[cat] || "";
         subCatContainer.innerHTML = `<h2>Catalogue PDF Download</h2>
@@ -37,8 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
           btn.textContent = sub;
           btn.classList.add('sub-btn');
           btn.addEventListener('click', function () {
-            // Construct PDF URL (e.g., watches-men.pdf)
-            const pdfUrl = 'assets/pdfs/' + cat + '-' + sub.toLowerCase().replace(/\s/g, '') + '.pdf';
+            // Construct PDF URL based on actual folder structure
+            const pdfUrl = `assets/Pdfs/${cat}/${sub}.pdf`;
             window.open(pdfUrl, '_blank');
           });
           subCatContainer.appendChild(btn);
@@ -48,9 +59,9 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
     
-    // Close the subcategories overlay.
+    // Close the subcategories overlay
     document.getElementById('closeSubcategories').addEventListener('click', function () {
       document.getElementById('subcategories').classList.add('hidden');
     });
-  });
+});
   
