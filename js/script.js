@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // For categories with only one subcategory, open PDF directly
         if (subcategories.length === 1) {
-          const pdfUrl = `https://cdn.jsdelivr.net/gh/houseofbrands/hobwholesale@main/assets/Pdfs/${cat}/${encodeURIComponent(subcategories[0])}.pdf`;
+          const pdfUrl = constructPdfUrl(cat, subcategories[0]);
           window.open(pdfUrl, '_blank');
           return;
         }
@@ -48,8 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
           btn.textContent = sub;
           btn.classList.add('sub-btn');
           btn.addEventListener('click', function () {
-            // Construct PDF URL using CDN and proper encoding
-            const pdfUrl = `https://cdn.jsdelivr.net/gh/houseofbrands/hobwholesale@main/assets/Pdfs/${cat}/${encodeURIComponent(sub)}.pdf`;
+            const pdfUrl = constructPdfUrl(cat, sub);
             window.open(pdfUrl, '_blank');
           });
           subCatContainer.appendChild(btn);
@@ -58,6 +57,25 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById('subcategories').classList.remove('hidden');
       });
     });
+    
+    // Helper function to construct PDF URLs
+    function constructPdfUrl(category, subcategory) {
+      // Try CDN first for small files
+      const cdnUrl = `https://cdn.jsdelivr.net/gh/houseofbrands/hobwholesale@main/assets/Pdfs/${category}/${encodeURIComponent(subcategory)}.pdf`;
+      
+      // Fallback to direct GitHub URL for large files
+      const githubUrl = `https://github.com/houseofbrands/hobwholesale/raw/main/assets/Pdfs/${category}/${encodeURIComponent(subcategory)}.pdf`;
+      
+      // Use fetch to check if CDN URL works
+      return fetch(cdnUrl, { method: 'HEAD' })
+        .then(response => {
+          if (response.ok) {
+            return cdnUrl;
+          }
+          return githubUrl;
+        })
+        .catch(() => githubUrl);
+    }
     
     // Close the subcategories overlay
     document.getElementById('closeSubcategories').addEventListener('click', function () {
