@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const categoryElements = document.querySelectorAll('.category');
-  
+    
   categoryElements.forEach(category => {
     category.addEventListener('click', function () {
       const dataCategory = this.getAttribute('data-category');
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
       
       // For categories with only one subcategory, open PDF directly
       if (subcategories.length === 1) {
-        const pdfUrl = `https://github.com/houseofbrands/hobwholesale/raw/main/assets/Pdfs/${folderName}/${encodeURIComponent(subcategories[0])}.pdf`;
+        const pdfUrl = `https://houseofbrands.github.io/hobwholesale/assets/Pdfs/${folderName}/${encodeURIComponent(subcategories[0])}.pdf`;
         window.open(pdfUrl, '_blank');
         return;
       }
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
         btn.textContent = sub;
         btn.classList.add('sub-btn');
         btn.addEventListener('click', function () {
-          const pdfUrl = `https://github.com/houseofbrands/hobwholesale/raw/main/assets/Pdfs/${folderName}/${encodeURIComponent(sub)}.pdf`;
+          const pdfUrl = `https://houseofbrands.github.io/hobwholesale/assets/Pdfs/${folderName}/${encodeURIComponent(sub)}.pdf`;
           window.open(pdfUrl, '_blank');
         });
         subCatContainer.appendChild(btn);
